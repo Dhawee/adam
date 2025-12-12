@@ -1,5 +1,13 @@
 import React from "react";
 import heroImage from "./assets/HeroImage.png";
+import GraphicsProject1 from './assets/GraphicsFolder/GraphicsDesign1.jpg';
+import GraphicsProject2 from './assets/GraphicsFolder/GraphicsDesign2.jpg';
+import WebDevProject1 from './assets/WebDevFolder/WebDev1.jpg';
+import WebDevProject2 from './assets/WebDevFolder/WebDev2.jpg';
+import UIUXProject1 from './assets/UIUXFolder/UIUX1.jpg';
+import CyberSecProject1 from './assets/CyberSecFolder/CyberSec1.jpg';
+import ChatBox from './components/ChatBox.jsx';
+
 
 // Portfolio Landing Page - Single File React Component (Tailwind CSS)
 // Customized for Kareem Adam Olawale
@@ -17,6 +25,7 @@ export default function App() {
         <Contact />
       </main>
       <Footer />
+      <ChatBox /> {/* Floating chat box */}
     </div>
   );
 }
@@ -89,7 +98,7 @@ function Hero() {
       <div className="md:col-span-5 flex justify-center md:justify-end animate-slide-in">
         <div className="relative w-72 h-80 md:w-80 md:h-96">
           <div className="absolute -inset-2 bg-linear-to-r from-green-400 to-blue-500 transform rotate-3 rounded-lg shadow-2xl z-0" />
-          <img src={heroImage} alt="hero" className="absolute inset-0 w-full h-full object-cover rounded-lg shadow-xl transform scale-125 hover:scale-150 transition-transform duration-500 z-10" />
+          <img src={heroImage} alt="hero" className="absolute inset-0 w-full h-full object-cover rounded-lg transform scale-125 hover:scale-150 transition-transform duration-500 z-10" />
         </div>
       </div>
     </section>
@@ -144,7 +153,11 @@ function WhyHire() {
           <p className="inline-block px-3 py-1 rounded-full bg-green-50 text-green-600 text-sm">My Skills</p>
           <h2 className="text-3xl md:text-4xl font-bold mt-4">Why Hire Me For Your Next <span className="text-green-600">Project?</span></h2>
           <p className="mt-4 text-gray-600 max-w-md">I'm specialist in Graphics Design, Web Development, UI/UX Design, and Cybersecurity. My passion is designing & solving problems through user experience and research.</p>
-          <button className="mt-6 px-5 py-3 bg-green-600 text-white rounded-md">Hire Me</button>
+          <a href="#contact">
+            <button className="mt-6 px-5 py-3 bg-green-600 text-white rounded-md">
+              Hire Me
+            </button>
+          </a>
         </div>
 
         <div className="md:col-span-6 grid gap-4">
@@ -163,14 +176,15 @@ function WhyHire() {
 /* -----------------------------
    Portfolio
    ----------------------------- */
+// Import your local project images
 function Portfolio() {
   const projects = [
-    { id: 1, title: 'Graphics Design Project 1', img: 'https://via.placeholder.com/300x200?text=Graphics+Design+1' },
-    { id: 2, title: 'Web Dev Project 1', img: 'https://via.placeholder.com/300x200?text=Web+Dev+1' },
-    { id: 3, title: 'UI/UX Design Project 1', img: 'https://via.placeholder.com/300x200?text=UI+UX+1' },
-    { id: 4, title: 'Cybersecurity Project 1', img: 'https://via.placeholder.com/300x200?text=Cybersecurity+1' },
-    { id: 5, title: 'Graphics Design Project 2', img: 'https://via.placeholder.com/300x200?text=Graphics+Design+2' },
-    { id: 6, title: 'Web Dev Project 2', img: 'https://via.placeholder.com/300x200?text=Web+Dev+2' },
+    { id: 1, title: 'Graphics Design Project 1', img: GraphicsProject1 },
+    { id: 2, title: 'Web Dev Project 1', img: WebDevProject1 },
+    { id: 3, title: 'UI/UX Design Project 1', img: UIUXProject1 },
+    { id: 4, title: 'Cybersecurity Project 1', img: CyberSecProject1 },
+    { id: 5, title: 'Graphics Design Project 2', img: GraphicsProject2 },
+    { id: 6, title: 'Web Dev Project 2', img: WebDevProject2 },
   ];
 
   return (
@@ -178,8 +192,12 @@ function Portfolio() {
       <div className="flex items-center justify-between">
         <div>
           <p className="inline-block px-3 py-1 rounded-full bg-green-50 text-green-600 text-sm">Portfolio</p>
-          <h3 className="text-2xl md:text-3xl font-bold mt-4">My Creative Works Latest <span className="text-green-600">Projects</span></h3>
-          <p className="mt-3 text-gray-600 max-w-lg">I have selected and mentioned here some of my latest projects to share with you.</p>
+          <h3 className="text-2xl md:text-3xl font-bold mt-4">
+            My Creative Works Latest <span className="text-green-600">Projects</span>
+          </h3>
+          <p className="mt-3 text-gray-600 max-w-lg">
+            I have selected and mentioned here some of my latest projects to share with you.
+          </p>
         </div>
 
         <div>
@@ -189,9 +207,20 @@ function Portfolio() {
 
       <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {projects.map((p) => (
-          <div key={p.id} className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 group">
+          <div
+            key={p.id}
+            className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 group"
+          >
             <div className="h-48 bg-gray-100 flex items-center justify-center overflow-hidden">
-              <img src={p.img} alt={p.title} className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-300" />
+              <img
+                src={p.img}
+                alt={p.title}
+                className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-300"
+                onError={(e) =>
+                (e.target.src =
+                  'https://via.placeholder.com/600x400?text=Image+Not+Found')
+                }
+              />
             </div>
             <div className="p-4">
               <h4 className="font-semibold text-lg">{p.title}</h4>
@@ -209,9 +238,9 @@ function Portfolio() {
    ----------------------------- */
 function Testimonials() {
   const reviews = [
-    { name: 'Client 1', role: 'Business Owner', text: 'Excellent work on graphics design. Highly recommended!' },
-    { name: 'Client 2', role: 'Startup Founder', text: 'Great web development skills and attention to detail.' },
-    { name: 'Client 3', role: 'Designer', text: 'Impressive UI/UX designs that enhance user experience.' },
+    { name: 'Raymond Blessing', role: 'Business Owner', text: 'Excellent work on graphics design. Highly recommended!' },
+    { name: 'Popoola Adebiyi', role: 'Startup Founder', text: 'Great web development skills and attention to detail.' },
+    { name: 'Esther Coker', role: 'Designer', text: 'Impressive UI/UX designs that enhance user experience.' },
   ];
 
   return (
